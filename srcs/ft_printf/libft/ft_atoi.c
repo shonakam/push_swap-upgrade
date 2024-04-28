@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shonakam <shonakam@student.42.jp>          +#+  +:+       +#+        */
+/*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:36:27 by shonakam          #+#    #+#             */
-/*   Updated: 2023/11/02 19:27:09 by shonakam         ###   ########.fr       */
+/*   Updated: 2024/03/26 03:00:48 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ static int	solve_long(const char *str, int sign)
 
 int	ft_atoi(const char *str)
 {
-	int		result;
 	int		flag;
 
-	result = 0;
 	flag = 1;
 	while ((9 <= *str && *str <= 13) || *str == ' ')
 		str++;

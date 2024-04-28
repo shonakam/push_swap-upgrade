@@ -1,41 +1,42 @@
 PUSHSWAP = push_swap
 
-# CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g -I$(PATH)push_swap.h $(FT_PRINTF_A) $(LIBFT_A)
-CFLAGS = -Wall -Werror -Wextra -I$(PATH)push_swap.h $(FT_PRINTF_A) $(LIBFT_A)
+# CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g -I$(SRC_PATH)push_swap.h $(FT_PRINTF_A) $(LIBFT_A)
+CFLAGS = -Wall -Werror -Wextra -I$(SRC_PATH)push_swap.h $(FT_PRINTF_A) $(LIBFT_A)
 FLAGS = -Wall -Werror -Wextra 
-PATH = ./srcs/
+SRC_PATH = ./srcs/
 
-FT_PRINTF_A = $(PATH)ft_printf/libftprintf.a
-LIBFT_A = $(PATH)ft_printf/libft/libft.a
+FT_PRINTF_A = $(SRC_PATH)ft_printf/libftprintf.a
+LIBFT_A = $(SRC_PATH)ft_printf/libft/libft.a
 
-FILES = $(PATH)main.c \
-		$(PATH)error.c \
-		$(PATH)utils.c \
-		$(PATH)parse_args.c \
-		$(PATH)node_manage.c \
-		$(PATH)ft_radixsort.c \
-		$(PATH)sort_actions.c \
-		$(PATH)sort_shorts.c \
-		$(PATH)sort_support.c \
+FILES = $(SRC_PATH)main.c \
+		$(SRC_PATH)error.c \
+		$(SRC_PATH)utils.c \
+		$(SRC_PATH)parse_args.c \
+		$(SRC_PATH)node_manage.c \
+		$(SRC_PATH)ft_radixsort.c \
+		$(SRC_PATH)sort_actions.c \
+		$(SRC_PATH)sort_shorts.c \
+		$(SRC_PATH)sort_support.c \
 
-all: $(PUSH_SWAP)
+all: $(PUSHSWAP)
 
 $(FT_PRINTF_A): $(LIBFT)
-	make -C $(PATH)ft_printf
+	make -C $(SRC_PATH)ft_printf
 
 $(LIBFT_A): 
-	make -C $(PATH)ft_printf/libft
+	make -C $(SRC_PATH)ft_printf/libft
 
-$(PUSH_SWAP):
-	@make -C $(PATH)ft_printf/libft
-	@make -C $(PATH)ft_printf
+$(PUSHSWAP):
+	@make -C $(SRC_PATH)ft_printf/libft
+	@make -C $(SRC_PATH)ft_printf
 	@gcc $(CFLAGS) $(FILES) -o $(PUSHSWAP)
 	@echo "Success!"
 
 clean:
-	make fclean -C $(PATH)ft_printf
+	make -C $(SRC_PATH)ft_printf clean
 
 fclean: clean
 	rm -f $(PUSHSWAP)
+	make -C $(SRC_PATH)ft_printf fclean
 
 re: fclean all

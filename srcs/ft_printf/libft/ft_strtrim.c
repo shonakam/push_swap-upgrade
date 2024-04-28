@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shonakam <shonakam@student.42.jp>          +#+  +:+       +#+        */
+/*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:50:38 by shonakam          #+#    #+#             */
-/*   Updated: 2023/10/05 21:37:44 by shonakam         ###   ########.fr       */
+/*   Updated: 2024/03/26 03:10:44 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (s_dst == NULL)
 		return (NULL);
 	i = 0;
-	while (i < size && start <= end && s1 != '\0')
+	while (i < size && start <= end && s1 != (void *)0)
 		s_dst[i++] = s1[start++];
 	s_dst[size] = '\0';
 	return (s_dst);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shonakam <shonakam@student.42.jp>          +#+  +:+       +#+        */
+/*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 04:45:30 by shonakam          #+#    #+#             */
-/*   Updated: 2024/03/26 01:24:25 by shonakam         ###   ########.fr       */
+/*   Updated: 2024/04/28 02:49:41 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@ static void	handle_err(int ac, char **arg)
 	int		prev;
 
 	i = 0;
-	if (ft_arraysize(arg) == 2)
-	{
-		write(2, "Error\n", ft_strlen("Error\n"));
-		exit(1);
-	}
 	while (arg[i])
 	{
 		check_number(arg[i]);
@@ -70,6 +65,20 @@ static void	free_node(t_stack **n)
 		free(current);
 		current = next;
 	}
+	free(*n);
+}
+
+static void free_args(char **arg)
+{
+	size_t i;
+
+	i = 0;
+	while (arg[i])
+	{
+		free(arg[i]);
+		i++;
+	}
+	free(arg);
 }
 
 int	main(int ac, char **av)
@@ -91,9 +100,10 @@ int	main(int ac, char **av)
 		ft_radixsort(&a_stack, &b_stack);
 	free_node(&a_stack);
 	free_node(&b_stack);
+	free_args(new_arg);
 }
 
-// __attribute__((destructor))
-// static void destructor() {
-// 	system("leaks -q a.out");
-// }
+__attribute__((destructor))
+static void destructor() {
+	system("leaks -q push_swap");
+}
